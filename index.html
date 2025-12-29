@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حياك | HAYYAK</title>
+  <meta name="description" content="اهلين، وين حاب تروح اليوم؟ اكتشف المتاجر، المطاعم، السياحة، الشواطئ، والفنادق مع أفضل العروض اليومية." />
+
+  <!-- Afeesh local fonts (single family name, multiple weights) -->
+  <style>
+    /* Map several available Afeesh font files to one family name for easy usage */
+    @font-face {
+      font-family: 'Afeesh';
+      src: url('afeesh/Afeesh-Aadi.woff2') format('woff2'),
+           url('afeesh/Afeesh-Aadi.woff') format('woff'),
+           url('afeesh/Afeesh-Aadi.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Afeesh';
+      src: url('afeesh/Afeesh-Mekalbaz.woff2') format('woff2'),
+           url('afeesh/Afeesh-Mekalbaz.woff') format('woff'),
+           url('afeesh/Afeesh-Mekalbaz.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Afeesh';
+      src: url('afeesh/Afeesh-NosMekalbaz.woff2') format('woff2'),
+           url('afeesh/Afeesh-NosMekalbaz.woff') format('woff'),
+           url('afeesh/Afeesh-NosMekalbaz.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Afeesh';
+      src: url('afeesh/Afeesh-NosMesalwa.woff2') format('woff2'),
+           url('afeesh/Afeesh-NosMesalwa.woff') format('woff'),
+           url('afeesh/Afeesh-NosMesalwa.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --ink: #0f0f10;
+      --muted: #6b7280;
+      --line: #0f0f10;
+      --accent: #0f0f10;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Afeesh', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    /* Phone-width centered container to resemble the mockup, but responsive */
+    .shell {
+      width: 100%;
+      max-width: 420px; /* close to the phone width in the screenshot */
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 0 #0f0f10;
+    }
+
+    header.brand {
+      text-align: center;
+      margin: 12px 0 14px;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 48px;
+      letter-spacing: 2px;
+    }
+    .logo-sub {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 20px;
+      margin-top: 2px;
+      letter-spacing: 3px;
+    }
+
+    /* Map placeholder to mimic the image in the phone */
+    .map {
+      height: 180px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      border: 2px solid var(--line);
+    }
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    .question {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 14px 6px 8px;
+    }
+
+    /* Categories row */
+    .cats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 8px 4px 2px;
+    }
+    .cat {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      font-size: 12px;
+      text-align: center;
+      user-select: none;
+      text-decoration: none;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .cat .ico {
+      width: 52px; height: 46px;
+      display: grid; place-items: center;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+    }
+    .cat .emoji { font-size: 22px; line-height: 1; }
+
+    .section-title {
+      font-weight: 700;
+      font-size: 22px;
+      margin: 6px 6px 10px;
+    }
+
+    /* Offer card */
+    .offer { padding: 0 6px 8px; }
+    .offer .deal {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 10px;
+      align-items: center;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 8px 6px 12px;
+      background: var(--card);
+    }
+    .offer .deal img {
+      width: 64px; height: 40px; object-fit: cover; border-radius: 8px;
+      border: 2px solid var(--line);
+    }
+    .offer .deal .title { font-weight: 700; }
+    .offer .deal .sub { color: var(--muted); font-weight: 600; font-size: 13px; }
+
+    /* List of quick links */
+    .quick { padding: 6px; display: grid; gap: 8px; }
+    .quick .item {
+      display: flex; align-items: center; gap: 10px;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--card);
+      font-weight: 600;
+    }
+    .quick .item .arrow {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line);
+      display: grid; place-items: center; font-size: 16px; flex: 0 0 auto;
+    }
+    .quick .item .label { flex: 1 1 auto; }
+
+    /* Bottom search */
+    .bottom-search { padding: 10px 6px 18px; }
+    .search {
+      display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 8px;
+      border: 2px solid var(--line); border-radius: 999px; padding: 10px 12px;
+      background: var(--card);
+    }
+    .search .glass { text-align: center; font-size: 16px; }
+    .search input {
+      appearance: none; border: 0; outline: 0; background: transparent; width: 100%;
+      font: inherit; color: var(--ink);
+    }
+    .search input::placeholder { color: var(--muted); }
+
+    /* Footer small note */
+    footer { color: var(--muted); text-align: center; font-size: 12px; padding-bottom: 14px; }
+
+    /* Larger screens: breathe a bit more */
+    @media (min-width: 768px) {
+      .shell { padding: 24px; }
+      .map { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="shell">
+      <header class="brand">
+        <div class="logo-text">حــــــيــــاك</div>
+        <div class="logo-sub">HAYYAK</div>
+      </header>
+
+      <div class="map card" aria-label="خريطة">
+        <iframe id="user-map" src="https://www.openstreetmap.org/export/embed.html?bbox=51.50,22.50,56.50,26.20&amp;layer=mapnik" title="Map"></iframe>
+      </div>
+
+      <h1 class="question">اهلين، وين حاب تروح اليوم؟</h1>
+
+      <section class="cats">
+        <a href="متاجر.html" class="cat">
+          <div class="ico"><span class="emoji" aria-hidden="true">🛍️</span></div>
+          <div>متاجر</div>
+        </a>
+        <a href="مطاعم.html" class="cat">
+          <div class="ico"><span class="emoji" aria-hidden="true">🍽️</span></div>
+          <div>مطاعم</div>
+        </a>
+        <a href="سياحة.html" class="cat">
+          <div class="ico"><span class="emoji" aria-hidden="true">🗺️</span></div>
+          <div>سياحة</div>
+        </a>
+        <a href="ترفيه.html" class="cat">
+          <div class="ico"><span class="emoji" aria-hidden="true">🏖️</span></div>
+          <div>ترفيه</div>
+        </a>
+        <a href="فنادق.html" class="cat">
+          <div class="ico"><span class="emoji" aria-hidden="true">🏨</span></div>
+          <div>فنادق</div>
+        </a>
+      </section>
+
+      <h2 class="section-title">عرض اليوم!</h2>
+
+      <section class="offer">
+        <div class="deal">
+          <img src="img.jpg" alt="عرض ترفيهي" />
+          <div>
+            <div class="title">خصم 40% على IMG </div>
+            <div class="sub">لفترة محدودة • اطّلع على التفاصيل</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick">
+        <div class="item"><div class="arrow">↩</div><div class="label">افراد العائلة</div></div>
+        <div class="item"><div class="arrow">↩</div><div class="label">محطة قياس جودة المكان - لاصحاب الحساسية</div></div>
+        <div class="item"><div class="arrow">↩</div><div class="label">اماكن زرتها مسبق </div></div>
+        <div class="item"><div class="arrow">↩</div><div class="label">المشاكل الصحية/النفسية</div></div>
+        <div class="item"><div class="arrow">↩</div><div class="label">بطاقة التعريف الرقمية</div></div>
+        <div class="item"><div class="arrow">↩</div><div class="label">قوانين دولة الإمارات العربية المتحدة</div></div>
+      </section>
+
+      <div class="bottom-search">
+        <div class="search">
+          <div class="glass">🔍</div>
+          <input type="search" placeholder="ابحث هنا" aria-label="ابحث هنا" />
+        </div>
+      </div>
+    </main>
+
+    <footer class="shell" aria-hidden="true">© حياك</footer>
+  </div>
+
+</body>
+</html>
